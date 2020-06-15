@@ -41,4 +41,5 @@
   * 窗口对象交个一个全局引用，为了不让垃圾回收时回收这个窗口对象
   * webPreferences：传入到窗口的配置对象。传入{ nodeIntegration: true }，使得index.html中的JavaScript有访问Node.js环境的能力
   *  
-* 
+* Electron API演示工具：` https://github.com/electron/electron-api-demos/releases `
+* 试验工具 Electron Fiddle：` https://github.com/electron/fiddle/releases `
