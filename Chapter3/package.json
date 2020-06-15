@@ -1,0 +1,10 @@
+{
+  "name": "Chapter3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "linguanqiang",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^9.0.4"
+  }
+}
