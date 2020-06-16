@@ -21,16 +21,30 @@
     </script>.
     <br/>
     <button id="openDevToolsBtn">打开开发者工具</button>
+    <br/>
+    <button id="makeNewWindow1">创建一个新的窗口1</button>
+    <br/>
+    <button id="makeNewWindow2">创建一个新的窗口2</button>
     <script>
         let { remote } = require('electron');
         document.querySelector("#openDevToolsBtn").addEventListener('click', function () {
             remote.getCurrentWindow().webContents.openDevTools();
         });
-    </script>
 
-    <script>
-        // You can also require other files to run in this process
-        require('./renderer.js');
+        let win = null;
+        document.querySelector("#makeNewWindow1").addEventListener('click', function() {
+            win = new remote.BrowserWindow({
+                webPreferences: { nodeIntegration: true }
+            });
+            win.loadFile('index.html');
+        })
+
+        let mainModel = remote.require('./mainModel');
+        let win2 = null;
+        document.querySelector("#makeNewWindow2").addEventListener('click', () => {
+            win2 = mainModel.makeWin();
+            win2.loadFile('index.html');
+        })
     </script>
 </body>
 
