@@ -6,5 +6,6 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^9.0.4"
-  }
+  },
+  "scripts": {"start": "electron ./index.js"}
 }
