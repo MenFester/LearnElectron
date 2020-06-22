@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 
 <body>
@@ -34,7 +33,7 @@
         let win = null;
         document.querySelector("#makeNewWindow1").addEventListener('click', function() {
             win = new remote.BrowserWindow({
-                webPreferences: { nodeIntegration: true }
+                webPreferences: { nodeIntegration: true, enableRemoteModule: true }
             });
             win.loadFile('index.html');
         })
@@ -45,6 +44,21 @@
             win2 = mainModel.makeWin();
             win2.loadFile('index.html');
         })
+    </script>
+
+    <br/>
+    <button id="sendMsg1">渲染进程给主进程发消息</button>
+
+    <script>
+        let { ipcRenderer } = require('electron');
+        document.querySelector("#sendMsg1").addEventListener('click', () => {
+            ipcRenderer.send('msg_render2main', { name: 'param1' }, { name: 'param2' });
+        });
+        ipcRenderer.on('msg_main2render', (event, param1, param2) => {
+            console.log(param1);
+            console.log(param2);
+            console.log(event.sender);
+        });
     </script>
 </body>
 
